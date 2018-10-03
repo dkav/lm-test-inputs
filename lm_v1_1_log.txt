@@ -1,0 +1,236 @@
+**********************************************************************
+Linkage Mapper log file: Linkage Mapper 
+
+Start time:	Fri May  8 13:47:00 2020 
+Parameters:	['test_lm_v1.py', 'G:\\lm_testing\\lm_output\\tstv1', 'G:\\lm_testing\\lm-inputs\\cores.shp', 'core_ID', 'G:\\lm_testing\\lm-inputs\\resistances', 'true', 'true', 'Cost-Weighted & Euclidean', '#', 'true', 'true', 'true', 1, 'Euclidean', 'true', 'true', 10000, 100000, 40000] 
+
+
+********************************************************
+NOTE: ArcGIS errors are more likely when writing to remote drives or deep file structures. We recommend shallow project directories on local drives, like C:\puma. Errors may also result from conflicts with anti-virus software (known problems with AVG). We have also seen conflicts when writing to synchronized folders like DROPBOX.
+
+Note also that Linkage Mapper tools often work best when run from ArcCatalog instead of ArcMap. 
+ 
+
+Linkage Mapper Version 1.1.0
+on ArcGIS Desktop 10.8 Service Pack N/A
+Setting data frame spatial reference to that of core area feature class.
+ 
+---------------------------------
+Starting at step 1.
+
+Making temporary copy of resistance raster for this run.
+
+Making temporary raster of core file for this run.
+ 
+---------------------------------
+Running script s1_getAdjacencies.py
+Adjacency files will be written to G:\lm_testing\lm_output\tstv1\datapass\adj
+Reducing processing area using bounding circle plus buffer of 10000.0 map units
+
+Calculating cost-weighted distance adjacency
+
+Reduced resistance raster extracted using bounding circle.
+That took 2 seconds.
+
+Starting cost-weighted distance allocation...
+Processing cell size: 399.887656228056
+
+Building output statistics and pyramids for CWD raster.
+Cost-weighted distance allocation done.
+That took 27 seconds.
+
+Calculating adjacencies crossing allocation boundaries...
+That took 29 seconds.
+
+---------------------------------
+Calculating Euclidean adjacency
+Starting Euclidean adjacency processing...
+
+Euclidean distance allocation done.
+That took 7 seconds.
+
+Calculating adjacencies crossing allocation boundaries...
+That took 25 seconds.
+
+ 
+---------------------------------
+Running script s2_buildNetwork.py
+Simplifying polygons for core pair distance calculations
+
+Finding distances between cores using Generate Near Table.
+There are 10 adjacent core pairs to process.
+10 percent done
+20 percent done
+30 percent done
+40 percent done
+50 percent done
+60 percent done
+70 percent done
+80 percent done
+90 percent done
+That took 6 seconds.
+
+Distance file G:\lm_testing\lm_output\tstv1\cores.shp_dists.txt generated.
+
+Core area distance list loaded.
+number of pairwise distances = 10
+ 
+---------------------------------
+Removed 0 duplicate core pairs in Euclidean distance table.
+
+After removing duplicates and distances that exceed maximum, 
+there are 10 pairwise distances.  Max core ID number is 13.
+Cost-weighted adjacency file loaded.
+Creating link table
+
+Keeping all adjacent links
+
+
+Checking for corridors that are too long to map.
+Writing G:\lm_testing\lm_output\tstv1\datapass\linkTable_s2.csv
+There are 10 links in the table.
+This includes 10 potential corridor links.
+Creating shapefiles with linework for links.
+
+Linework shapefiles written.
+ 
+---------------------------------
+Running script s3_calcCwds.py
+---------------------------------
+Bounding circles plus a buffer of 10000.0 map units will be used 
+ to limit extent of cost distance calculations.
+
+Looking for G:\lm_testing\lm_output\tstv1\datapass\linkTable_s2.csv
+There are 10 links in the table.
+This includes 10 potential corridor links.
+
+Number of core areas to connect: 6
+
+Creating cost-weighted distance output folders
+...cw
+
+Checking for corridors that are too long to map.
+Calculating bounding boxes for core areas.
+
+Done calculating bounding boxes.
+That took 0 seconds.
+
+Calculating bounding circles around potential corridors.
+
+Creating bounding circles using buffer analysis.
+Successfully created bounding circles around potential corridors using 
+a buffer of 10000.0 map units.
+That took 2 seconds.
+
+Reducing global processing area using bounding circle plus buffer of 10000.0 map units.
+
+Extracting raster....
+
+Reduced resistance raster extracted using bounding circle.
+Creating core area raster.
+
+Starting cost distance calculations.
+
+---------------------------------
+Target core areas for core area #1 = [ 9 11 13]
+Found an intermediate core in the least-cost path between cores 1 and 9.  The corridor will be removed.
+Done with all calculations for core ID #1. 1 of 6 cores have been processed.
+That took 53 seconds.
+
+---------------------------------
+Target core areas for core area #7 = [ 8  9 13]
+Done with all calculations for core ID #7. 2 of 6 cores have been processed.
+That took 1 minutes and 14 seconds.
+
+---------------------------------
+Target core areas for core area #8 = [ 7  9 11]
+Done with all calculations for core ID #8. 3 of 6 cores have been processed.
+That took 1 minutes and 15 seconds.
+
+---------------------------------
+Target core areas for core area #9 = [ 7  8 11 13]
+Done with all calculations for core ID #9. 4 of 6 cores have been processed.
+That took 1 minutes and 3 seconds.
+
+---------------------------------
+Target core areas for core area #11 = [1 8 9]
+Done with all calculations for core ID #11. 5 of 6 cores have been processed.
+That took 23 seconds.
+
+---------------------------------
+Target core areas for core area #13 = [7 9]
+Done with all calculations for core ID #13. 6 of 6 cores have been processed.
+That took 23 seconds.
+
+Updating G:\lm_testing\lm_output\tstv1\datapass\linkTable_s3.csv
+Creating shapefiles with linework for links...
+That took 3 seconds.
+
+
+Individual cost-weighted distance layers written to "cwd" directory. 
+
+G:\lm_testing\lm_output\tstv1\datapass\linkTable_s3.csv
+ updated with cost-weighted distances between core areas.
+ 
+---------------------------------
+Running script s4_refineNetwork.py
+
+Looking for G:\lm_testing\lm_output\tstv1\datapass\linkTable_s3.csv
+There are 10 links in the table.
+This includes 8 potential corridor links.
+ 
+---------------------------------
+Connecting each core area to its nearest 1 nearest neighbors.
+ 
+---------------------------------
+Connecting constellations
+
+Writing G:\lm_testing\lm_output\tstv1\datapass\linkTable_s4.csv
+That took 1 seconds.
+
+Creating shapefiles with linework for links.
+ 
+---------------------------------
+Running script s5_calcLccs.py
+
+Looking for G:\lm_testing\lm_output\tstv1\datapass\linkTable_s4.csv
+Max Euclidean distance between cores
+for linkage mapping set to 40000.0
+Max cost-weighted distance between cores
+for linkage mapping set to 100000.0
+There are 10 links in the table.
+This includes 4 potential corridor links and 1 component links.
+Creating output folder: G:\lm_testing\lm_output\tstv1\datapass\nlcc
+
+Normalized least-cost corridors will be written to G:\lm_testing\lm_output\tstv1\datapass\nlcc\nlc
+
+Normalized and mosaicked corridor for link ID #2 connecting core areas 1 and 11 in 3.42 seconds. 1 out of 5 links have been processed.
+Executing mosaic for link #5
+Done with mosaic.
+Normalized and mosaicked corridor for link ID #5 connecting core areas 7 and 9 in 5.52 seconds. 2 out of 5 links have been processed.
+Executing mosaic for link #6
+Done with mosaic.
+Normalized and mosaicked corridor for link ID #6 connecting core areas 7 and 13 in 5.42 seconds. 3 out of 5 links have been processed.
+Executing mosaic for link #7
+Done with mosaic.
+Normalized and mosaicked corridor for link ID #7 connecting core areas 8 and 9 in 4.81 seconds. 4 out of 5 links have been processed.
+Executing mosaic for link #9
+Done with mosaic.
+Normalized and mosaicked corridor for link ID #9 connecting core areas 9 and 11 in 4.58 seconds. 5 out of 5 links have been processed.
+
+Writing final LCP maps...
+Updating G:\lm_testing\lm_output\tstv1\datapass\linkTable_s5.csv
+Copy of final linkTable written to G:\lm_testing\lm_output\tstv1\output\tstv1_linkTable_s5.csv
+Creating shapefiles with linework for links.
+---------------------------------
+Results from this run can be found in your output directory:
+G:\lm_testing\lm_output\tstv1\output
+---------------------------------
+A record of run settings and messages can be found in your log directory:
+G:\lm_testing\lm_output\tstv1\run_history\log
+---------------------------------
+ 
+
+Stop time:		Fri May  8 14:00:41 2020 
+
+
